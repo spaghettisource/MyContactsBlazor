@@ -1,0 +1,49 @@
+# Build results
+bin/
+obj/
+
+# Rider
+.idea/
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# User-specific files
+*.user
+*.suo
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# NuGet
+packages/
+*.nupkg
+
+# EF Core local database
+*.db
+*.db-shm
+*.db-wal
+
+# Publish output
+publish/
+
+# Test results
+TestResults/
+
+# Coverage
+coverage/
+*.coverage
+
+# Generated files
+Generated/
+
+# Secrets
+secrets.json
+appsettings.Local.json
