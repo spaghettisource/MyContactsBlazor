@@ -1,57 +1,121 @@
 @page "/contacts"
-
 @rendermode InteractiveServer
 
-
+@using Microsoft.AspNetCore.Components.Forms
 
 <h1>Contacts</h1>
 
-<h3>Add Contact</h3>
+<h3>@(IsEditMode ? "Edit Contact" : "Add Contact")</h3>
 
-<div class="mb-3">
-    <label>First Name</label>
-    <input class="form-control" @bind="newContact.FirstName" />
-</div>
+<EditForm Model="newContact"
+          OnValidSubmit="SaveContact">
 
-<div class="mb-3">
-    <label>Last Name</label>
-    <input class="form-control" @bind="newContact.LastName" />
-</div>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
 
-<div class="mb-3">
-    <label>Email</label>
-    <input class="form-control" @bind="newContact.Email" />
-</div>
+    <div class="mb-3">
+        <label>First Name</label>
+        <InputText class="form-control"
+                   @bind-Value="newContact.FirstName" />
+    </div>
 
-<div class="mb-3">
-    <label>Phone</label>
-    <input class="form-control" @bind="newContact.Phone" />
-</div>
+    <div class="mb-3">
+        <label>Last Name</label>
+        <InputText class="form-control"
+                   @bind-Value="newContact.LastName" />
+    </div>
 
-<button class="btn btn-primary" @onclick="AddContact">
-    Add Contact
-</button>
+    <div class="mb-3">
+        <label>Email</label>
+        <InputText class="form-control"
+                   @bind-Value="newContact.Email" />
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <InputText class="form-control"
+                   @bind-Value="newContact.Phone" />
+    </div>
+
+    @if (IsEditMode)
+    {
+        <button type="submit"
+                class="btn btn-warning me-2">
+            Save Changes
+        </button>
+
+        <button type="button"
+                class="btn btn-secondary"
+                @onclick="CancelEdit">
+            Cancel
+        </button>
+    }
+    else
+    {
+        <button type="submit"
+                class="btn btn-primary">
+            Add Contact
+        </button>
+    }
+
+</EditForm>
 
 <hr />
 
-<table class="table">
+<table class="table table-striped">
     <thead>
     <tr>
+        <th>Id</th>
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email</th>
         <th>Phone</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
     <tbody>
-    @foreach (var contact in ContactsList)     {
+    @foreach (var contact in ContactsList)
+    {
         <tr>
+            <td>@contact.Id</td>
             <td>@contact.FirstName</td>
             <td>@contact.LastName</td>
             <td>@contact.Email</td>
             <td>@contact.Phone</td>
+            <td>
+                <button class="btn btn-sm btn-warning me-2"
+                        @onclick="() => EditContact(contact)">
+                    Edit
+                </button>
+
+                <button class="btn btn-sm btn-danger"
+                        @onclick="() => ConfirmDelete(contact.Id)">
+                    Delete
+                </button>
+            </td>
         </tr>
     }
     </tbody>
 </table>
+
+@if (ShowDeleteConfirmation)
+{
+    <div class="alert alert-warning mt-3">
+        <h5>Delete Contact</h5>
+
+        <p>
+            Are you sure you want to delete this contact?
+        </p>
+
+        <button class="btn btn-danger me-2"
+                @onclick="DeleteSelectedContact">
+            Yes
+        </button>
+
+        <button class="btn btn-secondary"
+                @onclick="CancelDelete">
+            No
+        </button>
+    </div>
+}

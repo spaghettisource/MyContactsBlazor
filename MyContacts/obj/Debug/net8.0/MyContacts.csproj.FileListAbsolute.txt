@@ -137,3 +137,4 @@
 /Users/gerasimtrifonov/RiderProjects/MyContacts/MyContacts/bin/Debug/net8.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/gerasimtrifonov/RiderProjects/MyContacts/MyContacts/obj/Debug/net8.0/MyContacts.csproj.AssemblyReference.cache
 /Users/gerasimtrifonov/RiderProjects/MyContacts/MyContacts/obj/Debug/net8.0/MyContacts.csproj.Up2Date
+/Users/gerasimtrifonov/RiderProjects/MyContacts/MyContacts/obj/Debug/net8.0/MyContacts.sourcelink.json
