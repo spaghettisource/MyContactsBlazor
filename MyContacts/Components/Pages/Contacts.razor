@@ -1,0 +1,57 @@
+@page "/contacts"
+
+@rendermode InteractiveServer
+
+
+
+<h1>Contacts</h1>
+
+<h3>Add Contact</h3>
+
+<div class="mb-3">
+    <label>First Name</label>
+    <input class="form-control" @bind="newContact.FirstName" />
+</div>
+
+<div class="mb-3">
+    <label>Last Name</label>
+    <input class="form-control" @bind="newContact.LastName" />
+</div>
+
+<div class="mb-3">
+    <label>Email</label>
+    <input class="form-control" @bind="newContact.Email" />
+</div>
+
+<div class="mb-3">
+    <label>Phone</label>
+    <input class="form-control" @bind="newContact.Phone" />
+</div>
+
+<button class="btn btn-primary" @onclick="AddContact">
+    Add Contact
+</button>
+
+<hr />
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    @foreach (var contact in ContactsList)     {
+        <tr>
+            <td>@contact.FirstName</td>
+            <td>@contact.LastName</td>
+            <td>@contact.Email</td>
+            <td>@contact.Phone</td>
+        </tr>
+    }
+    </tbody>
+</table>
